@@ -7,8 +7,11 @@ export class MessagesService {
 	messages: Message[] = [{ name: 'John', content: 'Hello' }]
 	clientToUser = {}
 
-	create(createMessageDto: CreateMessageDto) {
-		const message = { ...createMessageDto }
+	create(createMessageDto: CreateMessageDto, clientId: string) {
+		const message = {
+			name: this.clientToUser[clientId],
+			content: createMessageDto.content,
+		}
 
 		this.messages.push(message)
 
